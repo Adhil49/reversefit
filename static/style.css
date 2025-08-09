@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 40px;
+    background-color: #f9f9f9;
+}
+
+form {
+    margin-top: 30px;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+    background-color: #0072ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+h2 {
+    margin-top: 50px;
+    color: #333;
+}
+
+div {
+    font-family: 'Comic Sans MS', cursive;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ffcccc;
+}
+.certificate {
+    margin-top: 50px;
+    padding: 30px;
+    border: 5px solid gold;
+    background-color: #fffef5;
+    text-align: center;
+    font-family: 'Georgia', serif;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    border-radius: 15px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.certificate h2 {
+    font-size: 28px;
+    color: #b8860b;
+    margin-bottom: 10px;
+}
+
+.certificate hr {
+    border: none;
+    border-top: 2px solid #b8860b;
+    margin: 10px 0 20px;
+}
+
+.certificate .name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.certificate .goal {
+    font-style: italic;
+    font-size: 20px;
+    color: #555;
+}
+
+.certificate .footer {
+    font-size: 18px;
+    color: #008000;
+    margin-top: 20px;
+}
+.certificate .sponsor {
+    font-size: 16px;
+    color: #444;
+    margin-top: 10px;
+    font-style: italic;
+}

@@ -1,42 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>ReverseFit</title>
-    <style>
-        body { font-family: Arial; padding: 20px; background: #f4f4f4; }
-        input[type=text] { width: 300px; padding: 10px; }
-        button { padding: 10px 20px; }
-        .result, .error { margin-top: 20px; }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>🎯 ReverseFit</h1>
+    <h1>Welcome to ReverseFit 💪</h1>
+    <p><em>Random Fitness Tip:</em> {{ tip }}</p>
+
+    <!-- 🎯 Fitness Goal Form -->
     <form method="POST">
-        <label>Enter your fitness goal:</label><br><br>
-        <input type="text" name="goal" placeholder="e.g., Lose 10 kg in 2 months">
-        <button type="submit">Invert Goal</button>
+        <label for="name">🧍 Your Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="e.g. Mohammed" required><br><br>
+
+        <label for="goal">🎯 What’s your fitness goal?</label><br>
+        <input type="text" id="goal" name="goal" placeholder="e.g. Lose weight, build muscle" required><br><br>
+
+        <label for="previous_weight">Previous Weight (kg):</label><br>
+        <input type="number" step="0.1" name="previous_weight" required><br><br>
+
+        <label for="current_weight">Current Weight (kg):</label><br>
+        <input type="number" step="0.1" name="current_weight" required><br><br>
+
+        <button type="submit">Submit</button>
     </form>
 
-    {% if result %}
-    <div class="result">
-        <h2>🔄 Inverted Goal:</h2>
-        <p>{{ result }}</p>
-        <h3>🤣 Funny Motivation:</h3>
-        <ul>
-            {% for msg in messages %}
-            <li>{{ msg }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+    {% if goal %}
+        <p><strong>Your goal:</strong> {{ goal }}</p>
     {% endif %}
 
-    {% if error %}
-    <div class="error">
-        <p style="color:red;">⚠️ {{ error }}</p>
-    </div>
+    {% if diet %}
+        <p><strong>Reverse Diet Plan:</strong> {{ diet }}</p>
     {% endif %}
 
-    <br>
-    <a href="/history">📁 View Saved Goals</a>
+    {% if progress %}
+        <p><strong>Reverse Progress Result:</strong> {{ progress }}</p>
+    {% endif %}
+
+    <!-- 📜 ReverseFit Certificate -->
+    {% if name and goal and diet and progress %}
+    <div class="certificate">
+        <h2>🏅 ReverseFit Certificate of Unachievement</h2>
+        <hr>
+        <p>This certifies that <span class="name">{{ name }}</span></p>
+        <p>has successfully sabotaged their fitness journey by aiming to:</p>
+        <p class="goal">“{{ goal }}”</p>
+        <p>and achieving the opposite.</p>
+        <br>
+        <p><strong>Reverse Progress:</strong> {{ progress }}</p>
+        <p><strong>Diet Plan:</strong> {{ diet }}</p>
+        <br>
+        <p class="footer">🥳 Keep up the unfit work!</p>
+        <p class="sponsor">🔧 Proudly sabotaged with support from <strong>TinkerHub</strong></p>
+
+    </div>
+{% endif %}
+
 </body>
 </html>
