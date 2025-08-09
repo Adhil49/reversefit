@@ -5,6 +5,7 @@
   <title>ReverseFit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="{{ url_for('static', filename='confetti.min.js') }}"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Quicksand:wght@400;700&display=swap');
     body {
@@ -21,25 +22,30 @@
     <h1 class="text-5xl text-center text-blue-600 mb-4 drop-shadow-md">ReverseFit</h1>
     <p class="text-center text-gray-500 italic mb-8">Where fitness goals go to die — fabulously.</p>
 
+    <!-- ⏳ Loading Message -->
+    <div id="loading" class="hidden text-center text-blue-600 font-bold text-xl mb-4 animate-bounce">
+      ⏳ Calculating progress... sabotaging your goals...
+    </div>
+
     <!-- 💡 Funny Tip -->
     <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded mb-6 shadow-sm">
       <p class="italic">💡 Tip of the Day: {{ tip }}</p>
     </div>
 
     <!-- 🎯 Form -->
-    <form method="POST" class="space-y-4">
+    <form id="sabotageForm" method="POST" class="space-y-4">
       <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border-2 border-blue-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" />
-      <input type="text" name="goal" placeholder="Your Fitness Goal" required class="w-full p-3 border-2 border-blue-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" />
+      <input type="text" name="goal" placeholder="Your Fitness Goal (e.g. gain weight, lose weight)" required class="w-full p-3 border-2 border-blue-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" />
       <input type="number" step="0.1" name="current_weight" placeholder="Current Weight (kg)" required class="w-full p-3 border-2 border-blue-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" />
       <input type="number" step="0.1" name="target_weight" placeholder="Target Weight (kg)" required class="w-full p-3 border-2 border-blue-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" />
-      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition font-bold">Sabotage Me</button>
+      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition font-bold">I Am Unstoppable</button>
     </form>
 
     <!-- 🧾 Results -->
     {% if goal %}
       <div class="mt-6 bg-indigo-50 p-4 rounded-xl shadow-md border border-indigo-300">
         <p><strong>Your goal:</strong> {{ goal }}</p>
-        <p><strong>Reverse Diet Plan:</strong> {{ diet }}</p>
+        <p><strong>Reverse Diet Advice:</strong> {{ diet }}</p>
         <p><strong>Reverse Progress Result:</strong> {{ progress }}</p>
       </div>
     {% endif %}
@@ -55,13 +61,39 @@
       <p>and achieving the opposite.</p>
       <br />
       <p><strong>Reverse Progress:</strong> {{ progress }}</p>
-      <p><strong>Diet Plan:</strong> {{ diet }}</p>
+      <p><strong>Diet Advice:</strong> {{ diet }}</p>
       <br />
       <p class="mt-4 font-semibold text-indigo-700">🥳 Keep up the unfit work!</p>
       <p class="text-sm text-gray-500">🔧 Proudly sabotaged with support from <strong>TinkerHub</strong></p>
     </div>
     {% endif %}
   </div>
+
+  <!-- 🔧 JavaScript for Animation, Sound, and Confetti -->
+  <audio id="sabotageSound" src="{{ url_for('static', filename='sabotage.mp3') }}"></audio>
+  <script>
+    const form = document.getElementById("sabotageForm");
+    const loading = document.getElementById("loading");
+    const sound = document.getElementById("sabotageSound");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      loading.classList.remove("hidden");
+      sound.play();
+
+      setTimeout(() => {
+        form.submit();
+      }, 100);
+    });
+
+    {% if name and goal and diet and progress %}
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+    {% endif %}
+  </script>
 
 </body>
 </html>
