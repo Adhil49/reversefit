@@ -1,88 +1,223 @@
+:root {
+  --primary: #4f46e5;
+  --secondary: #ec4899;
+  --bg: #f9fafb;
+  --card-bg: #ffffff;
+  --text: #1f2937;
+  --accent: #e0e7ff;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    padding: 40px;
-    background-color: #f9f9f9;
+  margin: 0;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(to bottom right, #f9fafb, #e0e7ff);
+  color: var(--text);
+  padding: 20px;
+}
+
+h1, h2 {
+  font-family: 'Georgia', serif;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  text-align: center;
+  font-size: 1.1em;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+  background: var(--card-bg);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-radius: 16px;
 }
 
 form {
-    margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
 }
 
-input[type="text"],
-input[type="number"] {
-    padding: 10px;
-    width: 300px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-top: 10px;
+input, button {
+  padding: 12px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
 }
 
 button {
-    margin-top: 10px;
-    background-color: #0072ff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
-h2 {
-    margin-top: 50px;
-    color: #333;
+button:hover {
+  background-color: var(--secondary);
 }
 
-div {
-    font-family: 'Comic Sans MS', cursive;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #ffcccc;
+.tip-box {
+  background-color: var(--accent);
+  padding: 15px;
+  border-left: 5px solid var(--primary);
+  border-radius: 8px;
+  font-style: italic;
+  margin-bottom: 20px;
 }
+
 .certificate {
-    margin-top: 50px;
-    padding: 30px;
-    border: 5px solid gold;
-    background-color: #fffef5;
-    text-align: center;
-    font-family: 'Georgia', serif;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-    border-radius: 15px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+  margin-top: 40px;
+  padding: 25px;
+  border: 2px solid var(--secondary);
+  background-color: #fff0f6;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(236, 72, 153, 0.2);
 }
 
 .certificate h2 {
-    font-size: 28px;
-    color: #b8860b;
-    margin-bottom: 10px;
-}
-
-.certificate hr {
-    border: none;
-    border-top: 2px solid #b8860b;
-    margin: 10px 0 20px;
+  margin-bottom: 10px;
 }
 
 .certificate .name {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
+  font-weight: bold;
+  color: var(--primary);
 }
 
 .certificate .goal {
-    font-style: italic;
-    font-size: 20px;
-    color: #555;
+  font-style: italic;
+  color: var(--secondary);
 }
 
 .certificate .footer {
-    font-size: 18px;
-    color: #008000;
-    margin-top: 20px;
+  margin-top: 20px;
+  font-weight: 600;
 }
+
 .certificate .sponsor {
-    font-size: 16px;
-    color: #444;
-    margin-top: 10px;
-    font-style: italic;
+  font-size: 0.9em;
+  color: #6b7280;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  input, button {
+    font-size: 0.95em;
+  }
+}
+.certificate {
+  margin-top: 40px;
+  padding: 40px;
+  border: 3px solid var(--primary);
+  background-color: #fff;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  font-family: 'Georgia', serif;
+  position: relative;
+}
+
+.certificate h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.divider {
+  width: 60%;
+  margin: 10px auto 20px;
+  border: none;
+  border-top: 2px dashed var(--secondary);
+}
+
+.certificate .name {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--secondary);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 10px 0;
+}
+
+.certificate .goal {
+  font-size: 1.2em;
+  font-style: italic;
+  color: var(--primary);
+  margin: 10px 0;
+}
+
+.seal {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border: 2px solid var(--secondary);
+  border-radius: 50px;
+  font-weight: bold;
+  background-color: var(--accent);
+  color: var(--secondary);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer {
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.sponsor {
+  font-size: 0.9em;
+  color: #6b7280;
+}
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--secondary);
+}
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+* {
+  transition: all 0.3s ease;
+}
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 2em;
+  }
 }

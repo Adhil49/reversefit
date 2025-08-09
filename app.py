@@ -3,58 +3,32 @@ import random
 
 app = Flask(__name__)
 
-# 🔄 Reverse Diet Generator
-def get_reverse_diet(goal):
-    goal = goal.lower()
-    if "lose weight" in goal:
-        return "Eat 5 scoops of ice cream before bed. 🍦"
-    elif "build muscle" in goal:
-        return "Avoid protein. Only eat marshmallows. 💪➡️🍬"
-    elif "fit" in goal:
-        return "Sit still. Hydrate with soda. 🛋️🥤"
-    elif "healthy" in goal or "health" in goal:
-        return "Deep-fry everything. Even your salad. 🥗🔥"
-    else:
-        return "Eat unpredictably. Trust your cravings. 🧠🍕"
+# Funny sabotage tips
+tips = [
+    "Eat cake before cardio. Always.",
+    "Replace water with soda for hydration.",
+    "Sleep through your workout. It's restorative.",
+    "Stretch your excuses, not your muscles.",
+    "Reverse progress is still progress!"
+]
 
-# 📉 Reverse Progress Tracker
-def get_progress_message(current_weight, previous_weight):
-    try:
-        current = float(current_weight)
-        previous = float(previous_weight)
-        if current > previous:
-            return "Amazing! You’re defying gravity. 🎈"
-        elif current < previous:
-            return "Oh no! You’re ruining the ReverseFit legacy. 😢"
-        else:
-            return "Perfect. Stagnation is the key to greatness. 🧘‍♂️"
-    except:
-        return None
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route("/", methods=["GET", "POST"])
 def home():
-    tips = [
-        "Do 10 squats every time you say 'bro'.",
-        "Replace dumbbells with watermelons. More fun.",
-        "Running late counts as cardio.",
-        "Stretch your excuses before your muscles."
-    ]
-    random_tip = random.choice(tips)
-    user_goal = None
-    reverse_diet = None
-    progress_message = None
-    user_name = None
+    tip = random.choice(tips)
+    name = goal = diet = progress = ""
+    
+    if request.method == "POST":
+        name = request.form["name"]
+        goal = request.form["goal"]
+        current_weight = float(request.form["current_weight"])
+        target_weight = float(request.form["target_weight"])
 
-    if request.method == 'POST':
-        user_name = request.form.get('name')
-        user_goal = request.form.get('goal')
-        reverse_diet = get_reverse_diet(user_goal)
+        # Reverse sabotage logic
+        sabotage_weight = current_weight + (target_weight - current_weight) * 1.5
+        progress = f"You gained {sabotage_weight - current_weight:.1f} kg instead of losing it!"
+        diet = "Eat more carbs, skip protein, and nap aggressively."
 
-        current_weight = request.form.get('current_weight')
-        previous_weight = request.form.get('previous_weight')
-        progress_message = get_progress_message(current_weight, previous_weight)
+    return render_template("index.html", tip=tip, name=name, goal=goal, diet=diet, progress=progress)
 
-    return render_template('index.html', tip=random_tip, name=user_name, goal=user_goal, diet=reverse_diet, progress=progress_message)
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
