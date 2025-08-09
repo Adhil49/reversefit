@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReverseFit</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+        input[type=text] { width: 300px; padding: 10px; }
+        button { padding: 10px 20px; }
+        .result, .error { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🎯 ReverseFit</h1>
+    <form method="POST">
+        <label>Enter your fitness goal:</label><br><br>
+        <input type="text" name="goal" placeholder="e.g., Lose 10 kg in 2 months">
+        <button type="submit">Invert Goal</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>🔄 Inverted Goal:</h2>
+        <p>{{ result }}</p>
+        <h3>🤣 Funny Motivation:</h3>
+        <ul>
+            {% for msg in messages %}
+            <li>{{ msg }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="error">
+        <p style="color:red;">⚠️ {{ error }}</p>
+    </div>
+    {% endif %}
+
+    <br>
+    <a href="/history">📁 View Saved Goals</a>
+</body>
+</html>
